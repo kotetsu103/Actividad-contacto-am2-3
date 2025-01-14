@@ -16,7 +16,7 @@ export default function CamaraScreen() {
 
     const pickImage = async () => {
         if (!hasPermission) {
-            alert("Permission to access camera is required.");
+            alert("Perimiso de la camara requerido");
             return;
         }
 
@@ -35,12 +35,12 @@ export default function CamaraScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Capture a Photo</Text>
-            <Button title="Take a Photo" onPress={pickImage} color="#4CAF50" />
+            <Text style={styles.title}>Toma la foto</Text>
+            <Button title="Tomate una foto" onPress={pickImage} color="#4CAF50" />
             {image ? (
                 <Image source={{ uri: image }} style={styles.image} />
             ) : (
-                <Text style={styles.noImageText}>No image captured yet</Text>
+                <Text style={styles.noImageText}>Imagen todavia sin capturar</Text>
             )}
         </View>
     );

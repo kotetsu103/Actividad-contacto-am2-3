@@ -23,14 +23,14 @@ export default function GaleriaScreen() {
 
     const uploadImage = async () => {
         if (!image) {
-            Alert.alert('No image selected', 'Please select an image first.');
+            Alert.alert('Imagen no seleccionada', 'Por favor seleccione una imagen primero.');
             return;
         }
 
         setUploading(true);
 
         const storage = getStorage();
-        const storageRef = ref(storage, 'images/' + new Date().toISOString());  // Unique file name
+        const storageRef = ref(storage, 'images/' + new Date().toISOString());  
 
         const response = await fetch(image);
         const blob = await response.blob();
@@ -39,12 +39,12 @@ export default function GaleriaScreen() {
             const uploadTask = await uploadBytes(storageRef, blob);
             const downloadURL = await getDownloadURL(uploadTask.ref);
 
-            // Optionally, you can save this URL to Firestore or use it in your app.
-            console.log('File uploaded successfully. Download URL: ', downloadURL);
-            Alert.alert('Upload successful', 'Your image has been uploaded!');
+        
+            console.log('El archivo se ha cargado correctamente. URL de descarga: ', downloadURL);
+            Alert.alert('Subida exitosa', '¡Tu imagen ha sido cargada!');
         } catch (error) {
-            console.error('Upload failed: ', error);
-            Alert.alert('Upload failed', 'There was an error uploading the image.');
+            console.error('La carga falló: ', error);
+            Alert.alert('Error al subir', 'Hubo un error al cargar la imagen.');
         } finally {
             setUploading(false);
         }
@@ -52,10 +52,10 @@ export default function GaleriaScreen() {
 
     return (
         <View style={styles.container}>
-            <Button title="Pick an image from camera roll" onPress={pickImage} />
+            <Button title="Elige una imagen del carrete de la cámara" onPress={pickImage} />
             {image && <Image source={{ uri: image }} style={styles.image} />}
             <Button
-                title={uploading ? 'Uploading...' : 'Upload Photo'}
+                title={uploading ? 'Subiendo...' : 'Foto subida'}
                 onPress={uploadImage}
                 disabled={uploading}
             />

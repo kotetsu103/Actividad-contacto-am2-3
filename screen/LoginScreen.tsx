@@ -12,7 +12,6 @@ export default function LoginScreen({ navigation }: any) {
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user);
-                // Clear the input fields after successful login
                 setcorreo('');
                 setcontrasena('');
                 navigation.navigate('Welcome');
@@ -26,7 +25,6 @@ export default function LoginScreen({ navigation }: any) {
 
                 console.log(errorCode, errorMessage);
 
-                // Using switch to handle different error codes
                 switch (errorCode) {
                     case 'auth/invalid-credential':
                         titulo = "Credenciales inválidas";
